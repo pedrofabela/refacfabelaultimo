@@ -43,7 +43,7 @@ public class OracleDAOFactory implements DAOFactory {
     
     //DESARROLLO
     private String username = "REFACFAB";	
-    private String url = "jdbc:oracle:thin:@localhost:1521:xe";	
+    private String url = "jdbc:oracle:thin:@192.168.3.31:1521:xe";	
     private String password = "fabela041287p"; 
 	//*/
     
@@ -764,8 +764,7 @@ public class OracleDAOFactory implements DAOFactory {
 				query.append(unionCampos);
 				query.append(obj.getCampoTabla());
 				query.append("=");
-				if(obj.getTipoDato().toUpperCase().contains("SECUENCIA") || obj.getTipoDato().toUpperCase().contains("CURRENT_DATE")
-						|| obj.getTipoDato().toUpperCase().contains("NULL")){
+				if(obj.getTipoDato().toUpperCase().contains("SECUENCIA") || obj.getTipoDato().toUpperCase().contains("CURRENT_DATE") || obj.getTipoDato().toUpperCase().contains("NULL")){
 					query.append(obj.getValorCampo().toString());
 				}else{
 					query.append("? ");
@@ -807,6 +806,68 @@ public class OracleDAOFactory implements DAOFactory {
 		return modifico;
 		
 	}
+        
+        public boolean queryDeleteCondicion(String Tabla, ArrayList<ObjPrepareStatement> arregloCampos, String Condicion) throws Exception {
+		Constantes.enviaMensajeConsola("------ENTRA A  queryDelete---------------");
+		boolean modifico = false;
+		StringBuffer query=new StringBuffer();
+		String unionCampos = " ";
+		
+		query.append("DELETE FROM ");
+		query.append(Tabla);
+		query.append(" WHERE ");
+		
+		
+		for(ObjPrepareStatement obj: arregloCampos){
+			if(obj.getValorCampo()!=null){
+				query.append(unionCampos);
+				query.append(obj.getCampoTabla());
+				query.append("=");
+				if(obj.getTipoDato().toUpperCase().contains("SECUENCIA") || obj.getTipoDato().toUpperCase().contains("CURRENT_DATE") || obj.getTipoDato().toUpperCase().contains("NULL")){
+					query.append(obj.getValorCampo().toString());
+				}else{
+					query.append("? ");
+				}
+				unionCampos="AND ";
+			}else{//if(obj.getValorCampo()!=null){
+				query.append(unionCampos);
+				query.append(obj.getCampoTabla());
+				query.append("=null");
+			}
+		}
+		
+		Constantes.enviaMensajeConsola("queryCompleto, DELETE--->"+query.toString());
+		
+		this.pstmt = this.createConnection().prepareStatement(query.toString());
+		int registroInsertado = -1;
+		try{
+			Constantes.enviaMensajeConsola("---tama�o arreglo--"+arregloCampos.size());
+			asignarTiposPSTMT(arregloCampos,1);
+			Constantes.enviaMensajeConsola("---termino asignacion tipos----");
+			registroInsertado = this.pstmt.executeUpdate();
+			Constantes.enviaMensajeConsola("-------EJECUTO DELETE ---------------");
+		}finally{
+			if(this.pstmt!=null){
+				this.pstmt.close();
+				this.pstmt=null;
+			}
+			if(this.conn!=null){
+				this.conn.close();
+				this.conn=null;
+			}
+				
+		}
+		if(registroInsertado==1){
+			modifico=true;
+		}
+		
+		
+		return modifico;
+		
+	}
+        
+     
+     
 	
 	private int asignarTiposPSTMT(ArrayList<ObjPrepareStatement> arregloCampos, int posInicial) throws SQLException, ParseException{
 		int posicion = posInicial;

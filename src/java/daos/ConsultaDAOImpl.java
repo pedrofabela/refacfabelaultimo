@@ -1321,14 +1321,20 @@ public class ConsultaDAOImpl extends OracleDAOFactory implements ConsultaUsuario
         //En el objeto temporal settear el campo de la tabla, el tipo de dato y el valor a insertar
         // Integer a=Integer.parseInt(correspondencia1.getCANTI1());
         temporal = new ObjPrepareStatement("NO_PARTE", "STRING", camp.getNO_PARTE());
+         arregloCampos.add(temporal);
+         temporal = new ObjPrepareStatement("NO_VENTA", "STRING", camp.getNO_VENTA());
         arregloCampos.add(temporal);
 
         String Condicion;
-        Condicion = "WHERE NO_PARTE=" + "'" + "" + camp.getNO_PARTE() + "" + "'" + " AND  NO_VENTA=" + "'" + "" + camp.getNO_VENTA() + "" + "'" + "";
+        Condicion = "WHERE NO_PARTE=" + "'" + "" + camp.getNO_PARTE() + "" + "'" + " AND  NO_VENTA=" + "'" + "" + camp.getNO_VENTA()  + "" + "'" + "";
+
+       
+        
+        System.out.print("la condición es:"+Condicion);
 
         //Se terminan de adicionar a nuesto ArrayLis los objetos
         //Ejecutar la funcion del OracleDAOFactory queryInsert
-        return oraDaoFac.queryDelete("VENTA_PRODUCTOS", arregloCampos, Condicion);
+        return oraDaoFac.queryDeleteCondicion("VENTA_PRODUCTOS", arregloCampos, Condicion);
     }
 
     public boolean pedidosProductosBorrar(camposConBean camp) throws Exception {
