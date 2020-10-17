@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts> 
+    <constant name="struts.multipart.maxSize" value="299999999" />
+    <constant name="struts.ui.theme" value="simple"></constant>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+    <constant name="struts.action.excludePattern" value="/GeneraPdf"></constant>
+    
+    
+    <package name="default" namespace="/" extends="struts-default">
+
+        <!-- ACCESO  A MENUS-->
+        <action name="acceso" class="action.Acceso_Action" method="verMevu">
+            <result name="SUCCESS">/pages/login.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION" type="chain">/pages/login.jsp</result>
+        </action>
+		
+		
+        <action name="verAcceso" class="action.Acceso_Action" method="MuestraMenuPrincipalUsuario">
+            <result name="SUCCESS">/pages/menuServicioAdmon.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        <!--REGISTRO  -->				
+        <!-- CERRAR SESION -->
+        <action name="CerrarSesion" class="action.CerrarSesion" method="cerrar">  
+            <result name="SUCCESS" type="chain">acceso</result>
+            <result name="input" type="chain">acceso</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+            
+        </action>	
+        
+         <action name="clientes" class="action.Consultas_Action" method="clientesCon">
+            <result name="SUCCESS">/pages/clientes.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+         <action name="usuarios" class="action.Consultas_Action" method="usuariosCon">
+            <result name="SUCCESS">/pages/usuarios.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+      <action name="clientesBuscar" class="action.Consultas_Action" method="clientesBusqueda">
+            <result name="SUCCESS">/pages/clientes.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="proveedoresBuscar" class="action.Consultas_Action" method="proveedoresBusqueda">
+            <result name="SUCCESS">/pages/proveedores.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+         <action name="usuariosGuardar" class="action.Consultas_Action" method="usuariosGuarda">
+            <result name="SUCCESS">/pages/usuarios.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+        
+        <action name="clientesGuardar" class="action.Consultas_Action" method="clientesGuarda">
+            <result name="SUCCESS">/pages/clientes.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+        <action name="proveedoresGuardar" class="action.Consultas_Action" method="proveedoresGuarda">
+            <result name="SUCCESS">/pages/proveedores.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+          <action name="llanacliente" class="action.Consultas_Action" method="llenarCamposActualizar">
+            <result name="SUCCESS">/pages/clientes.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+         <action name="llenaproveedores" class="action.Consultas_Action" method="llenarCamposProveedores">
+            <result name="SUCCESS">/pages/proveedores.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        <action name="actualizacliente" class="action.Consultas_Action" method="clientesActualiza">
+            <result name="SUCCESS">/pages/clientes.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+         <action name="actualizaproveedores" class="action.Consultas_Action" method="proveedoresActualiza">
+            <result name="SUCCESS">/pages/proveedores.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+		 <action name="clientesBorrar" class="action.Consultas_Action" method="clientesBorrar">
+            <result name="SUCCESS">/pages/clientes.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="usuariosBorrar" class="action.Consultas_Action" method="usuariosBorrar">
+            <result name="SUCCESS">/pages/usuarios.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        <action name="proveedoresBorrar" class="action.Consultas_Action" method="proveedoresBorrar">
+            <result name="SUCCESS">/pages/proveedores.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        
+         <action name="proveedores" class="action.Consultas_Action" method="proveedoresCon">
+            <result name="SUCCESS">/pages/proveedores.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        <action name="registroProductos" class="action.Consultas_Action" method="ingresoProductos">
+            <result name="SUCCESS">/pages/ingresoProductos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="eliminarProducto" class="action.Consultas_Action" method="eliminarProducto">
+            <result name="SUCCESS">/pages/ingresoProductos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        <action name="buscarProductos" class="action.Consultas_Action" method="buscarProductos">
+            <result name="SUCCESS">/pages/ingresoProductos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+         <action name="simuladorPrecio" class="action.Consultas_Action" method="simuladorPrecio">
+            <result name="SUCCESS">/pages/ingresoProductos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+         <action name="simuladorPrecio2" class="action.Consultas_Action" method="simuladorPrecio2">
+            <result name="SUCCESS">/pages/registroPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+         <action name="actualizarProducto" class="action.Consultas_Action" method="actualizarProducto">
+            <result name="SUCCESS">/pages/ingresoProductos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+        <action name="actualizarProducto2" class="action.Consultas_Action" method="actualizarProducto">
+            <result name="SUCCESS">/pages/registroPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+        <action name="guardaProducto" class="action.Consultas_Action" method="guardaProducto">
+            <result name="SUCCESS">/pages/ingresoProductos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+            
+        </action>
+        
+        <action name="selectCategoria" class="action.Consultas_Action" method="selectCategoria">
+            <result name="SUCCESS">/pages/ingresoProductos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+         <action name="stockProductos" class="action.Consultas_Action" method="stockProductos">
+            <result name="SUCCESS">/pages/stockProductos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+        <action name="registroPedidos" class="action.Consultas_Action" method="registroPedidos">
+            <result name="SUCCESS">/pages/registroPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+            
+        </action>
+        
+         <action name="registroPedidos2" class="action.Consultas_Action" method="registroPedidos2">
+            <result name="SUCCESS">/pages/registroPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+            
+        </action>
+        
+         <action name="guardaPedidos" class="action.Consultas_Action" method="guardaPedidos">
+            <result name="SUCCESS">/pages/registroPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+         <action name="pedidosProductosBorrar" class="action.Consultas_Action" method="pedidosProductoBorrar">
+            <result name="SUCCESS">/pages/registroPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        <action name="pedidoGuardar" class="action.Consultas_Action" method="pedidoGuardar">
+            <result name="SUCCESS">/pages/registroPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        <action name="compras" class="action.Consultas_Action" method="compras">
+            <result name="SUCCESS">/pages/seguimientoPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        <action name="comprasBuscar" class="action.Consultas_Action" method="comprasBuscar">
+            <result name="SUCCESS">/pages/seguimientoPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        
+        <action name="borrarPedidoProducto" class="action.Consultas_Action" method="borrarPedidoProducto">
+            <result name="SUCCESS">/pages/seguimientoPedidos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        
+        <action name="pedidosBuscar" class="action.Consultas_Action" method="pedidosBuscar">
+            <result name="SUCCESS">/pages/ingresoAlmacen.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="ingresoM" class="action.Consultas_Action" method="ingresoM">
+            <result name="SUCCESS">/pages/ingresoAlmacen.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        <action name="ingresoProdAlmacen" class="action.Consultas_Action" method="ingresaProductosAlmacen">
+            <result name="SUCCESS">/pages/ingresoAlmacen.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        <action name="preingresoAlmacen" class="action.Consultas_Action" method="preingresoAlmacen">
+            <result name="SUCCESS">/pages/ingresoAlmacen.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        <action name="ingresoAlmacen" class="action.Consultas_Action" method="ingresoAlmacen">
+            <result name="SUCCESS">/pages/ingresoAlmacen.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+            
+        </action>
+        
+        <action name="inventario" class="action.Consultas_Action" method="inventario">
+            <result name="SUCCESS">/pages/inventario.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="inventarioLista" class="action.Consultas_Action" method="inventarioLista">
+            <result name="SUCCESS">/pages/inventario.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+          <action name="ventaNueva" class="action.Consultas_Action" method="ventaNueva">
+            <result name="SUCCESS">/pages/nuevaVenta.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+             <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="buscarProductosVenta" class="action.Consultas_Action" method="buscarProductosVenta">
+            <result name="SUCCESS">/pages/nuevaVenta.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        <action name="clientesBuscarVenta" class="action.Consultas_Action" method="clientesBusqueda">
+            <result name="SUCCESS">/pages/nuevaVenta.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="asignarCliente" class="action.Consultas_Action" method="asignarCliente">
+            <result name="SUCCESS">/pages/nuevaVenta.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        
+         <action name="guardaProductoVenta" class="action.Consultas_Action" method="guardaProductoVenta">
+            <result name="SUCCESS">/pages/nuevaVenta.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="generaCotizacion" class="action.Consultas_Action" method="generaCotizacion">
+            <result name="SUCCESS">/pages/nuevaVenta.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="borrarProducto" class="action.Consultas_Action" method="borrarProducto">
+            <result name="SUCCESS">/pages/nuevaVenta.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="generarVenta" class="action.Consultas_Action" method="generarVenta">
+            <result name="SUCCESS">/pages/nuevaVenta.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+         <action name="consultaCotizacion" class="action.Consultas_Action" method="consultaCotizacion">
+            <result name="SUCCESS">/pages/consultaCotizacion.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        
+        <action name="generaCotizacionCon" class="action.Consultas_Action" method="generaCotizacion">
+            <result name="SUCCESS">/pages/consultaCotizacion.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="borrarProductoCon" class="action.Consultas_Action" method="borrarProducto">
+            <result name="SUCCESS">/pages/consultaCotizacion.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="generarVentaCon" class="action.Consultas_Action" method="generarVentaCon">
+            <result name="SUCCESS">/pages/consultaCotizacion.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="consultaVenta" class="action.Consultas_Action" method="consultaVenta">
+            <result name="SUCCESS">/pages/consultaCotizacion.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        <action name="consultaVentaAlmacen" class="action.Consultas_Action" method="consultaVentaAlmacen">
+            <result name="SUCCESS">/pages/consultaVentaAlmacen.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="actualizaVentaEstatus" class="action.Consultas_Action" method="actualizaVentaEstatus">
+            <result name="SUCCESS">/pages/consultaVentaAlmacen.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="consultaVentaGenera" class="action.Consultas_Action" method="consultaVentaGenera">
+            <result name="SUCCESS">/pages/consultaVenta.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="consultaVentaCancela" class="action.Consultas_Action" method="consultaVentaCancela">
+            <result name="SUCCESS">/pages/consultaVentaCancela.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="borrarProductoVenta" class="action.Consultas_Action" method="borrarProductoVenta">
+            <result name="SUCCESS">/pages/consultaVentaCancela.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="traspasos" class="action.Consultas_Action" method="traspasos">
+            <result name="SUCCESS">/pages/traspasos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        <action name="buscarProductosTraspasos" class="action.Consultas_Action" method="buscarProductosTraspasos">
+            <result name="SUCCESS">/pages/traspasos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+       
+       <action name="nuevoTraspasos" class="action.Consultas_Action" method="nuevoTraspasos">
+            <result name="SUCCESS">/pages/traspasos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="traspasar" class="action.Consultas_Action" method="traspasar">
+            <result name="SUCCESS">/pages/traspasos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="consultaVentaCobra" class="action.Consultas_Action" method="consultaVentaCobra">
+            <result name="SUCCESS">/pages/consultaVentaCobra.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        <action name="cobraNota" class="action.Consultas_Action" method="cobraNota">
+            <result name="SUCCESS">/pages/consultaVentaCobra.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="cobraNotaActualiza" class="action.Consultas_Action" method="cobraNotaActualiza">
+            <result name="SUCCESS">/pages/consultaVentaCobra.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+         <action name="cobraNotaActualizaFactura" class="action.Consultas_Action" method="cobraNotaActualizaFactura">
+            <result name="SUCCESS">/pages/consultaVentaCobra.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="cerrarCaja" class="action.Consultas_Action" method="cerrarCaja">
+            <result name="SUCCESS">/pages/cerrarCaja.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        <action name="cerrarCajaDetalle" class="action.Consultas_Action" method="cerrarCajaDetalle">
+            <result name="SUCCESS">/pages/cerrarCaja.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        
+        
+         <action name="consultaVentaCaja" class="action.Consultas_Action" method="consultaVentaCaja">
+            <result name="SUCCESS">/pages/cerrarCaja.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="productosStok0" class="action.Consultas_Action" method="productosStok0">
+            <result name="SUCCESS">/pages/productosStok0.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="productosStok0Fechas" class="action.Consultas_Action" method="productosStok0Fechas">
+            <result name="SUCCESS">/pages/productosStok0.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+           <action name="buscarAlternativos" class="action.Consultas_Action" method="buscarAlternativos">
+            <result name="SUCCESS">/pages/alternativos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="alternativos" class="action.Consultas_Action" method="alternativos">
+            <result name="SUCCESS">/pages/alternativos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+          <action name="borrarAlternativo" class="action.Consultas_Action" method="borrarAlternativo">
+            <result name="SUCCESS">/pages/alternativos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+         <action name="guardarAlternativo" class="action.Consultas_Action" method="guardarAlternativo">
+            <result name="SUCCESS">/pages/alternativos.jsp</result>			              
+            <result name="ERROR">/pages/login.jsp</result>
+            <result name="input">/pages/login.jsp</result>
+            <result name="SESION">/pages/login.jsp</result>
+        </action>
+        
+        
+    </package>
+    
+   
+	
+</struts>
